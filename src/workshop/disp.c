@@ -7,10 +7,20 @@
 
 #include "my_organise.h"
 
+static int tab_len(char **tab)
+{
+    int i = 0;
+
+    for (; tab[i] != NULL; i++);
+    return i;
+}
+
 int disp(void *data, char **args)
 {
     element_t **list = (element_t **) data;
 
+    if (tab_len(args) != 0)
+        return 84;
     for (element_t *temp = *list; temp != NULL; temp = temp->next) {
         my_putstr(temp->type);
         my_putstr(" n° ");
