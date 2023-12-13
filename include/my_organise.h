@@ -28,8 +28,17 @@ int my_putchar(char l);
 
 //my_strcmp.c
 int my_strcmp(char *s1, char *s2);
+int my_real_strcmp(char *s1, char *s2);
+char *my_strdup(char const *src);
 
 //my_getnbr.c
 int my_getnbr(char const *str);
+
+//call_functions.c
+void call_name_sort(element_t **list, element_t *curr, int nb_function);
+
+//sort.c
+void sort_by_name(element_t *list);
+void reverse(element_t **list);
 
 #endif /* MY_ORGANISE_ */

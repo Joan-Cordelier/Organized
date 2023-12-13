@@ -34,7 +34,7 @@ char *my_strdup(char const *src)
     char *dest = NULL;
     char *i = NULL;
 
-    dest = malloc(sizeof(char) * my_strlen(src + 1));
+    dest = malloc(sizeof(char) * my_strlen(src) + 1);
     i = my_strcpy(dest, src);
     return (i);
 }
@@ -55,4 +55,16 @@ int my_strcmp(char *s1, char *s2)
         i++;
     }
     return (s1[i] - s2[i]);
+}
+
+int my_real_strcmp(char *str1, char *str2)
+{
+    int i = 0;
+
+    while (str1[i] != '\0' && str2[i] != '\0') {
+        if (str1[i] != str2[i])
+            return (str1[i] - str2[i]);
+        i++;
+    }
+    return (str1[i] - str2[i]);
 }

@@ -5,16 +5,17 @@
 ## Makefile
 ##
 
-SRC	 =	./src/main.c			\
-		./src/workshop/add.c	\
-		./src/workshop/del.c	\
-		./src/workshop/sort.c	\
-		./src/workshop/disp.c	\
-		./src/put/my_putstr.c	\
-		./src/put/my_put_nbr.c	\
-		./src/put/my_putchar.c	\
-		./src/my_strcmp.c		\
-		./src/my_getnbr.c		\
+SRC	 =	./src/main.c					\
+		./src/workshop/add.c			\
+		./src/workshop/del.c			\
+		./src/workshop/sort.c			\
+		./src/workshop/disp.c			\
+		./src/workshop/call_function.c	\
+		./src/put/my_putstr.c			\
+		./src/put/my_put_nbr.c			\
+		./src/put/my_putchar.c			\
+		./src/my_strcmp.c				\
+		./src/my_getnbr.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -79,7 +79,7 @@ int add(void *data, char **args)
         *list = new;
         disp_add(new);
     }
-    if (add_nb == -1)
+    if (add_nb == -1 || add_nb == 0)
         return 84;
     return 0;
 }
