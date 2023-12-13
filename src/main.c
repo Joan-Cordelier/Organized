@@ -27,5 +27,5 @@ int main(void)
 
     workshop_shell(&list);
     dealloc(&list);
-    return 84;
+    return 0;
 }
