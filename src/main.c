@@ -24,8 +24,8 @@ void dealloc(element_t **list)
 int main(void)
 {
     element_t *list = NULL;
+    int to_re = workshop_shell(&list);
 
-    workshop_shell(&list);
     dealloc(&list);
-    return 0;
+    return to_re;
 }
