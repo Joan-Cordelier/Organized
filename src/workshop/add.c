@@ -59,7 +59,7 @@ int add(void *data, char **args)
     element_t *new = NULL;
 
     if (add_nb == -1 || add_nb == 0 || add_nb % 2 != 0)
-        exit(84);
+        return 84;
     for (int i = 0; i < add_nb; i += 2) {
         new = malloc(sizeof(element_t));
         new->indice = get_indice(*list);
