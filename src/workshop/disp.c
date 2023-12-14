@@ -25,9 +25,9 @@ int disp(void *data, char **args)
         my_putstr(temp->type);
         my_putstr(" n° ");
         my_put_nbr(temp->indice);
-        my_putstr(" - “");
+        my_putstr(" - \"");
         my_putstr(temp->name);
-        my_putstr("” added.\n");
+        my_putstr("\" added.\n");
     }
     return 0;
 }

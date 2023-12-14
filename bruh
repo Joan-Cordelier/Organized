@@ -1,2 +1,5 @@
-add WIRE a
+add WIRE a, WIRE b, WIRE c, WIRE d, SENSOR e, SENSOR f, WIRE a
+disp
+sort NAME -r
+disp
 exit

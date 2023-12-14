@@ -20,9 +20,9 @@ int disp_rm(element_t *data)
     my_putstr(data->type);
     my_putstr(" n°");
     my_put_nbr(data->indice);
-    my_putstr(" - “");
+    my_putstr(" - \"");
     my_putstr(data->name);
-    my_putstr("” deleted.\n");
+    my_putstr("\" deleted.\n");
     return 0;
 }
 

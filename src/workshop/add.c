@@ -42,9 +42,9 @@ int disp_add(element_t *data)
     my_putstr(data->type);
     my_putstr(" n°");
     my_put_nbr(data->indice);
-    my_putstr(" - “");
+    my_putstr(" - \"");
     my_putstr(data->name);
-    my_putstr("” added.\n");
+    my_putstr("\" added.\n");
     return 0;
 }
 

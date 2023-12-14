@@ -53,23 +53,6 @@ void sort_by_name(element_t *list)
 
 static int choose_function(int ac, char **av)
 {
-    if (ac == 0)
-        return 84;
-    if (av[ac][0] == 'N') {
-        if(ac >= 1 && my_strcmp(av[1], "-r") == 0)
-            return 2;
-        return 1;
-    }
-    if (av[ac][0] == 'T') {
-        if(ac >= 1 && my_strcmp(av[1], "-r") == 0)
-            return 2;
-        return 3;
-    }
-    if (av[ac][0] == 'I') {
-        if(ac >= 1 && my_strcmp(av[1], "-r") == 0)
-            return 2;
-        return 5;
-    }
     return 0;
 }
 
