@@ -30,12 +30,11 @@ int my_putchar(char l);
 int my_strcmp(char *s1, char *s2);
 int my_real_strcmp(char *s1, char *s2);
 char *my_strdup(char const *src);
+int my_strlen(char const *str);
+int tab_len(char **tab);
 
 //my_getnbr.c
 int my_getnbr(char const *str);
-
-//call_functions.c
-void call_name_sort(element_t **list, element_t *curr, int nb_function);
 
 //sort.c
 void sort_by_name(element_t *list);

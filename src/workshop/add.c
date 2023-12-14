@@ -7,16 +7,6 @@
 
 #include "my_organise.h"
 
-static int tab_len(char **tab)
-{
-    int i = 0;
-
-    for (; tab[i] != NULL; i++);
-    if (i % 2 != 0)
-        return -1;
-    return i;
-}
-
 static int get_indice(element_t *data)
 {
     int i = 0;

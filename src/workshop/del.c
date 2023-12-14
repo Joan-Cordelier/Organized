@@ -7,14 +7,6 @@
 
 #include "my_organise.h"
 
-static int tab_len(char **tab)
-{
-    int i = 0;
-
-    for (; tab[i] != NULL; i++);
-    return i;
-}
-
 int disp_rm(element_t *data)
 {
     my_putstr(data->type);

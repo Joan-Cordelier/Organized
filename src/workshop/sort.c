@@ -7,14 +7,6 @@
 
 #include "my_organise.h"
 
-static int tab_len(char **tab)
-{
-    int i = 0;
-
-    for (; tab[i] != NULL; i++);
-    return i;
-}
-
 void reverse(element_t **list)
 {
     element_t *previous = NULL;
@@ -51,23 +43,99 @@ void sort_by_name(element_t *list)
     }
 }
 
-static int choose_function(int ac, char **av)
+void sort_by_type(element_t *list)
 {
+    char *temp_name = NULL;
+    char *temp_type = NULL;
+    int temp_indice = 0;
+
+    for (element_t *temp = list->next; temp != NULL; temp = temp->next) {
+        if (my_real_strcmp(list->type, temp->type) > 0) {
+            temp_name = my_strdup(list->name);
+            temp_type = my_strdup(list->type);
+            temp_indice = list->indice;
+            list->name = temp->name;
+            list->type = temp->type;
+            list->indice = temp->indice;
+            temp->name = temp_name;
+            temp->type = temp_type;
+            temp->indice = temp_indice;
+        }
+    }
+}
+
+void sort_by_id(element_t *list)
+{
+    char *temp_name = NULL;
+    char *temp_type = NULL;
+    int temp_indice = 0;
+
+    for (element_t *temp = list->next; temp != NULL; temp = temp->next) {
+        if (list->indice > temp->indice) {
+            temp_name = my_strdup(list->name);
+            temp_type = my_strdup(list->type);
+            temp_indice = list->indice;
+            list->name = temp->name;
+            list->type = temp->type;
+            list->indice = temp->indice;
+            temp->name = temp_name;
+            temp->type = temp_type;
+            temp->indice = temp_indice;
+        }
+    }
+}
+
+static char **init_options(int ac, char **av)
+{
+    char **option = malloc(sizeof(char *) * ac);
+
+    for (int i = 0; i < ac; i++) {
+        option[i] = malloc(sizeof(char) * my_strlen(av[i]));
+        option[i] = av[i];
+    }
+    return option;
+}
+
+static int sort_to_do(char **option, int nb_sort, int len)
+{
+    if (len - nb_sort - 2 >= 0 &&
+    my_real_strcmp(option[len - nb_sort - 1], "-r") == 0 &&
+    my_real_strcmp(option[len - nb_sort - 2], "NAME") == 0)
+        return 2;
+    if (len - nb_sort - 1 >= 0 &&
+    my_real_strcmp(option[len - nb_sort - 1], "NAME") == 0)
+        return 1;
     return 0;
+}
+
+static void make_sort(element_t **list, int sort)
+{
+    if (sort == 0)
+        return;
+    if (sort == 1 || sort == 2) {
+        for (element_t *curr = *list; curr != NULL; curr = curr->next)
+            sort_by_name(curr);
+        if (sort == 2)
+            reverse(list);
+    }
 }
 
 int sort(void *data, char **args)
 {
     int arg_r = tab_len(args);
-    int nb_function = choose_function(arg_r, args);
+    char **option = init_options(arg_r, args);
+    int sort = 0;
+    int nb_sotr = 0;
     element_t **list = (element_t **) data;
-    element_t *curr = *list;
 
-    while (curr != NULL) {
-        sort_by_name(curr);
-        curr = curr->next;
+    if (arg_r < 1)
+        return 84;
+    for (int i = 0; i < arg_r; i++) {
+        sort = sort_to_do(option, nb_sotr, arg_r);
+        make_sort(list, sort);
+        if (sort == 2)
+            i++;
+        nb_sotr++;
     }
-    if (nb_function == 2)
-        reverse(list);
     return 0;
 }

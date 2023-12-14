@@ -7,14 +7,6 @@
 
 #include "my_organise.h"
 
-static int tab_len(char **tab)
-{
-    int i = 0;
-
-    for (; tab[i] != NULL; i++);
-    return i;
-}
-
 int disp(void *data, char **args)
 {
     element_t **list = (element_t **) data;
