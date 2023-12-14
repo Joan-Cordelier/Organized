@@ -29,7 +29,7 @@ void sort_by_name(element_t *list)
     int temp_indice = 0;
 
     for (element_t *temp = list->next; temp != NULL; temp = temp->next) {
-        if (my_real_strcmp(list->name, temp->name) > 0) {
+        if (my_real_strcmp(list->name, temp->name) >= 0) {
             temp_name = my_strdup(list->name);
             temp_type = my_strdup(list->type);
             temp_indice = list->indice;
@@ -50,7 +50,7 @@ void sort_by_type(element_t *list)
     int temp_indice = 0;
 
     for (element_t *temp = list->next; temp != NULL; temp = temp->next) {
-        if (my_real_strcmp(list->type, temp->type) > 0) {
+        if (my_real_strcmp(list->type, temp->type) >= 0) {
             temp_name = my_strdup(list->name);
             temp_type = my_strdup(list->type);
             temp_indice = list->indice;
@@ -71,7 +71,7 @@ void sort_by_id(element_t *list)
     int temp_indice = 0;
 
     for (element_t *temp = list->next; temp != NULL; temp = temp->next) {
-        if (list->indice > temp->indice) {
+        if (list->indice >= temp->indice) {
             temp_name = my_strdup(list->name);
             temp_type = my_strdup(list->type);
             temp_indice = list->indice;
