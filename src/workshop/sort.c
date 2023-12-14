@@ -96,6 +96,18 @@ static char **init_options(int ac, char **av)
     return option;
 }
 
+static int sort_to_do_2(char **option, int nb_sort, int len)
+{
+    if (len - nb_sort - 2 >= 0 &&
+    my_real_strcmp(option[len - nb_sort - 1], "-r") == 0 &&
+    my_real_strcmp(option[len - nb_sort - 2], "ID") == 0)
+        return 6;
+    if (len - nb_sort - 1 >= 0 &&
+    my_real_strcmp(option[len - nb_sort - 1], "ID") == 0)
+        return 5;
+    return 0;
+}
+
 static int sort_to_do(char **option, int nb_sort, int len)
 {
     if (len - nb_sort - 2 >= 0 &&
@@ -105,17 +117,34 @@ static int sort_to_do(char **option, int nb_sort, int len)
     if (len - nb_sort - 1 >= 0 &&
     my_real_strcmp(option[len - nb_sort - 1], "NAME") == 0)
         return 1;
-    return 0;
+    if (len - nb_sort - 2 >= 0 &&
+    my_real_strcmp(option[len - nb_sort - 1], "-r") == 0 &&
+    my_real_strcmp(option[len - nb_sort - 2], "TYPE") == 0)
+        return 4;
+    if (len - nb_sort - 1 >= 0 &&
+    my_real_strcmp(option[len - nb_sort - 1], "TYPE") == 0)
+        return 3;
+    return sort_to_do_2(option, nb_sort, len);
 }
 
 static void make_sort(element_t **list, int sort)
 {
-    if (sort == 0)
-        return;
     if (sort == 1 || sort == 2) {
         for (element_t *curr = *list; curr != NULL; curr = curr->next)
             sort_by_name(curr);
         if (sort == 2)
+            reverse(list);
+    }
+    if (sort == 3 || sort == 4) {
+        for (element_t *curr = *list; curr != NULL; curr = curr->next)
+            sort_by_type(curr);
+        if (sort == 4)
+            reverse(list);
+    }
+    if (sort == 5 || sort == 6) {
+        for (element_t *curr = *list; curr != NULL; curr = curr->next)
+            sort_by_id(curr);
+        if (sort == 6)
             reverse(list);
     }
 }
@@ -132,8 +161,9 @@ int sort(void *data, char **args)
         return 84;
     for (int i = 0; i < arg_r; i++) {
         sort = sort_to_do(option, nb_sotr, arg_r);
-        make_sort(list, sort);
-        if (sort == 2)
+        if (sort != 0)
+            make_sort(list, sort);
+        if (sort == 2 || sort == 4 || sort == 6)
             i++;
         nb_sotr++;
     }
