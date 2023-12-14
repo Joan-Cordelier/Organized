@@ -15,7 +15,7 @@ int disp(void *data, char **args)
         return 84;
     for (element_t *temp = *list; temp != NULL; temp = temp->next) {
         my_putstr(temp->type);
-        my_putstr(" n° ");
+        my_putstr(" n°");
         my_put_nbr(temp->indice);
         my_putstr(" - \"");
         my_putstr(temp->name);
