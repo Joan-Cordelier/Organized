@@ -35,15 +35,30 @@ void del_element(element_t **list, int indice)
     }
 }
 
+static int check_indice(element_t **list, int indice)
+{
+    if (indice == -1)
+        return 1;
+    if ((*list)->indice == indice)
+            return 0;
+    for (element_t *tmp = *list; tmp->next != NULL; tmp = tmp->next) {
+        if (tmp->next->indice == indice) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 int del(void *data, char **args)
 {
     int rm_nb = tab_len(args);
     element_t **list = (element_t **) data;
     element_t *to_rm = NULL;
 
-    if (*list == NULL || rm_nb == 0)
-        return 84;
     for (int i = 0; i < rm_nb; i ++) {
+        if (*list == NULL || rm_nb == 0 ||
+        check_indice(list, my_getnbr(args[i])))
+            return 84;
         if ((*list)->indice == my_getnbr(args[i])) {
             to_rm = *list;
             disp_rm(to_rm);
