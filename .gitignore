@@ -3,3 +3,4 @@ burh
 *.o
 *.log
 .vscode
+example_test

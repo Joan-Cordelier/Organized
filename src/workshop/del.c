@@ -41,7 +41,7 @@ int del(void *data, char **args)
     element_t **list = (element_t **) data;
     element_t *to_rm = NULL;
 
-    if (*list == NULL)
+    if (*list == NULL || rm_nb == 0)
         return 84;
     for (int i = 0; i < rm_nb; i ++) {
         if ((*list)->indice == my_getnbr(args[i])) {
